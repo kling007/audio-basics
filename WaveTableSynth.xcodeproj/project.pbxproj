@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		2A3C2AC219A1BE4000673D12 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 2A3C2AC119A1BE4000673D12 /* main.c */; };
 		2A3C2AC419A1BE4000673D12 /* WaveTableSynth.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2A3C2AC319A1BE4000673D12 /* WaveTableSynth.1 */; };
+		2A3C2ACC19A1BF4A00673D12 /* SoundFiles.c in Sources */ = {isa = PBXBuildFile; fileRef = 2A3C2ACB19A1BF4A00673D12 /* SoundFiles.c */; };
+		2A3C2ACE19A1C69100673D12 /* Oscillators.c in Sources */ = {isa = PBXBuildFile; fileRef = 2A3C2ACD19A1C69100673D12 /* Oscillators.c */; };
+		2A3C2AD219A1CD3200673D12 /* libsndfile.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A3C2AD119A1CD3200673D12 /* libsndfile.1.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -28,6 +31,12 @@
 		2A3C2ABE19A1BE4000673D12 /* WaveTableSynth */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = WaveTableSynth; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A3C2AC119A1BE4000673D12 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		2A3C2AC319A1BE4000673D12 /* WaveTableSynth.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = WaveTableSynth.1; sourceTree = "<group>"; };
+		2A3C2ACA19A1BF0500673D12 /* SoundFiles.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SoundFiles.h; sourceTree = "<group>"; };
+		2A3C2ACB19A1BF4A00673D12 /* SoundFiles.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = SoundFiles.c; sourceTree = "<group>"; };
+		2A3C2ACD19A1C69100673D12 /* Oscillators.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Oscillators.c; sourceTree = "<group>"; };
+		2A3C2ACF19A1C74500673D12 /* Oscillators.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Oscillators.h; sourceTree = "<group>"; };
+		2A3C2AD119A1CD3200673D12 /* libsndfile.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libsndfile.1.dylib; sourceTree = "<group>"; };
+		2A3C2AD319A3023D00673D12 /* Signal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Signal.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +44,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A3C2AD219A1CD3200673D12 /* libsndfile.1.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -45,6 +55,7 @@
 			isa = PBXGroup;
 			children = (
 				2A3C2AC019A1BE4000673D12 /* WaveTableSynth */,
+				2A3C2AD019A1CCEF00673D12 /* ExternalLibraries */,
 				2A3C2ABF19A1BE4000673D12 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -62,7 +73,21 @@
 			children = (
 				2A3C2AC119A1BE4000673D12 /* main.c */,
 				2A3C2AC319A1BE4000673D12 /* WaveTableSynth.1 */,
+				2A3C2ACA19A1BF0500673D12 /* SoundFiles.h */,
+				2A3C2ACB19A1BF4A00673D12 /* SoundFiles.c */,
+				2A3C2ACD19A1C69100673D12 /* Oscillators.c */,
+				2A3C2ACF19A1C74500673D12 /* Oscillators.h */,
+				2A3C2AD319A3023D00673D12 /* Signal.h */,
 			);
+			path = WaveTableSynth;
+			sourceTree = "<group>";
+		};
+		2A3C2AD019A1CCEF00673D12 /* ExternalLibraries */ = {
+			isa = PBXGroup;
+			children = (
+				2A3C2AD119A1CD3200673D12 /* libsndfile.1.dylib */,
+			);
+			name = ExternalLibraries;
 			path = WaveTableSynth;
 			sourceTree = "<group>";
 		};
@@ -118,6 +143,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				2A3C2AC219A1BE4000673D12 /* main.c in Sources */,
+				2A3C2ACC19A1BF4A00673D12 /* SoundFiles.c in Sources */,
+				2A3C2ACE19A1C69100673D12 /* Oscillators.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -197,6 +224,13 @@
 		2A3C2AC819A1BE4000673D12 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"HEADER_SEARCH_PATHS[arch=*]" = /opt/local/include/;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/WaveTableSynth",
+				);
+				"LIBRARY_SEARCH_PATHS[arch=*]" = "/opt/local/lib/**";
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -204,6 +238,13 @@
 		2A3C2AC919A1BE4000673D12 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"HEADER_SEARCH_PATHS[arch=*]" = /opt/local/include/;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/WaveTableSynth",
+				);
+				"LIBRARY_SEARCH_PATHS[arch=*]" = "/opt/local/lib/**";
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
