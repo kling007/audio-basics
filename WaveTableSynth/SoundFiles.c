@@ -12,15 +12,10 @@
 
 // This function creates a local soundfile for writing
 
-int create_file (const char * fname, SNDFILE ** file, SF_INFO sfinfo)
+int create_file (const char * fname, SNDFILE ** file, SF_INFO * sfinfo)
 {
     
-	sfinfo.samplerate	= SAMPLE_RATE;
-	sfinfo.frames		= SOUND_LENGTH;
-	sfinfo.channels		= 1;
-	sfinfo.format		= (SF_FORMAT_AIFF | SF_FORMAT_PCM_16) ;
-    
-    if (! (*file = sf_open (fname, SFM_WRITE, &sfinfo)))
+    if (! (*file = sf_open (fname, SFM_WRITE, sfinfo)))
 	{
         printf ("Error : Not able to open output file.\n") ;
 		return 1 ;
@@ -29,9 +24,10 @@ int create_file (const char * fname, SNDFILE ** file, SF_INFO sfinfo)
     return 0;
 } /* create_file */
 
-int write_file (float * buffer, SNDFILE * file, SF_INFO sfinfo)
+int write_file (float * buffer, SNDFILE * file, SF_INFO * sfinfo)
 {
-    sf_write_float (file, buffer, SOUND_LENGTH);
+    int numSamps = sfinfo->frames * sfinfo->channels;
+    sf_write_float (file, buffer, numSamps);
     puts (sf_strerror (file)) ;
     return 0;
 } /* write_file */

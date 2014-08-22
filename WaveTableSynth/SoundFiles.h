@@ -19,7 +19,7 @@
 #endif
 
 // Soundfile Utility Functions
-int create_file (const char * fname, SNDFILE ** file, SF_INFO sfinfo);
-int write_file (float * buffer, SNDFILE * file, SF_INFO sfinfo);
+int create_file (const char * fname, SNDFILE ** file, SF_INFO * sfinfo);
+int write_file (float * buffer, SNDFILE * file, SF_INFO * sfinfo);
 int close_file (SNDFILE * file);
 #endif

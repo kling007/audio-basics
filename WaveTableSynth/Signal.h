@@ -13,17 +13,21 @@
 
 struct Signal
 {
-    double sampRate;
-    double sampInterval;
-    float * sigBuf;
-    int chanCnt;
-    int sampCnt;
-    int frameCnt;
-    int * infoTags;
-    SNDFILE * sigFile;
+    double sampRate;     // # of samples/second
+    double sampInterval; // 1/sampRate
+    float * sigBuf;      // the signal data
+    float sigDur;        // duration of the signal in seconds
+    int chanCnt;         // # of interleaved signals
+    int frameCnt;        // sampCnt/chanCnt
+    int sampCnt;         // total # of samples (frameCnt*sampRate*sigDur)
+    int * sigType;       // the type of signal (can be multiple types at once)
+    SNDFILE * sigFile;   // for audio files saved by sndfile.h
 };
 
-typedef Signal Signal;
+typedef struct Signal Signal;
 
+// allocation
+//void createSignal (Signal * theSig, double sRate, int numChan, float dur, int * info);
+void createSignal (Signal * theSig, double sRate, int numChan, float dur);
 
 #endif
