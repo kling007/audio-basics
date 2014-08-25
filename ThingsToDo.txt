@@ -2,24 +2,13 @@
 
 List of todos for this simple program:
 
-Oscillators
------------
+Oscillator Ugens
+----------------
 SinOsc - wavetable opt for Sin
 WaveOsc - wavetable for arbitrary buffers
-GrainOsc - 
+GrainOsc - with features specific to granular synth techniques
+SoundFilePlayer
 
-GranularEmitters
-----------------
-Cloud
-- Cloud func
-
-Particle driven
-- Glisson particle
-- Grainlets
-- Trainlets
-- Pulsar
-- FOF
-- ETC
 
 Scheduler
 

@@ -31,10 +31,10 @@ int main(int argc, const char * argv[])
     memset (&sfinfo, 0, sizeof (sfinfo)) ;
     
     // Init Wavetables
-    createSineWavetable(sineTable, soundSize, 1.0f);
+    createSineWavetable(sineTable, soundSize, 1.0);
     
     // produce audio in buffer
-    wavetableOsc(audioBuffer, SOUND_LENGTH, sineTable, soundSize, 440, 0.5, 1.5);
+    wavetableOsc(audioBuffer, SOUND_LENGTH, sineTable, soundSize, 880, 0.5, 1.5);
     
     // print info
     printf("Welcome to the whole grains bakery!\n");

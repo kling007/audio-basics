@@ -18,10 +18,13 @@ void createSineWavetable(float * buffer, int sampCnt, float periods)
     float amplitude = 1;
     float coeff = 2*M_PI/sampCnt;
     
-    for (k = 0 ; k < sampCnt ; k++)
+    for (k = 0 ; k <= sampCnt ; k++)
     {
         buffer[k] = amplitude * sinf(periods * k * coeff);
     }
+    
+    k++;
+    buffer[k] = 0;
     
 }
 
