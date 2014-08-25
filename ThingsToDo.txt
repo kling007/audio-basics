@@ -10,15 +10,9 @@ GrainOsc - with features specific to granular synth techniques
 SoundFilePlayer
 
 
-Scheduler
+Simple event scheduler
 
-AudioOutputEngine
-
-
-
-
-
-
+Simple Real-time AudioOutputEngine based on dbl buffering
 
 
 */
