@@ -19,6 +19,10 @@ void createSineWavetable(float * buffer, int sampCnt, float periods);
 
 void wavetableOsc(float * buffer, int bufferSize, float * wavetable, int wavetableSize, float freq, float amp, float dur);
 
+// wavetable osc that has persistent phase
+
+void wavetableOscBuf(float * buffer, int bufferSize, float * wavetable, int wavetableSize, float freq, float amp, float dur);
+
 // misc functions
 void fillBufferWithSine(float * buffer, float freq);
 

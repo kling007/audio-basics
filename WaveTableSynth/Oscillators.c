@@ -53,6 +53,33 @@ void wavetableOsc(float * buffer, int bufferSize, float * wavetable, int wavetab
         if (indexInt<wavetableSize) {i += phaseIncr;} else {i -= wavetableSize;}
     }
 }
+
+// Simple interpolating wavetable oscillator
+void wavetableOscBuf(float * buffer, int bufferSize, float * wavetable, int wavetableSize, float freq, float amp, float dur)
+{
+    int numSamps = dur*SAMPLE_RATE;
+    
+    float baseIncr = wavetableSize/44100.0;
+    double phaseIncr = baseIncr*freq;
+    double indexRem, i = 0.0;
+    float watchMe, w1, w2 = 0.0;
+    int n, indexInt = 0;
+    
+    for (n=0; n<numSamps; n++) {
+        indexInt = floor(i);
+        indexRem = i-indexInt;
+        
+        w1 = wavetable[indexInt];
+        w2 = wavetable[indexInt+1];
+        
+        watchMe = w1 + ((w2-w1)*indexRem);
+        buffer[n] = watchMe*amp;
+        
+        // manage phasor
+        if (indexInt<wavetableSize) {i += phaseIncr;} else {i -= wavetableSize;}
+    }
+}
+
 // Simple/Naive - fill a buffer with a sine
 
 void fillBufferWithSine(float * buffer, float freq)
