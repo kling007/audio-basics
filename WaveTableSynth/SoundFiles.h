@@ -12,7 +12,7 @@
 
 #define		BUFFER_LEN		1024
 #define     SAMPLE_RATE     44100
-#define     SOUND_LENGTH    88200
+#define     SOUND_LENGTH    441000
 
 
 #ifndef		M_PI

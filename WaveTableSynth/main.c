@@ -50,7 +50,7 @@ int main(int argc, const char * argv[])
     // register it so it will play when mixer() is called
     
     // produce audio in buffer
-    wavetableOsc(audioBuffer, SOUND_LENGTH, sineTable, soundSize, 880, 0.5, 1.5);
+    wavetableOsc(audioBuffer, SOUND_LENGTH, sineTable, soundSize, 880, 0.5, 5);
     
     // setup audio playback - hard coded at the moment until I understand what options I will need to be able to adjust
     
@@ -120,10 +120,10 @@ void mixer(void * outBuf, float * inBuf, UInt32 numBytes, UInt32 * bytesWritten)
         // not sure I'm using the void * properly
         localBuf[i] = inBuf[totalSamplesWritten];
         i++;
-        //localBuf++;
         totalSamplesWritten++;
         bytesThisTime = i*byteSize;
     }
+    
     *bytesWritten = bytesThisTime;
 
 }

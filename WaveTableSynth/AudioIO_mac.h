@@ -20,13 +20,7 @@ int initAudioOutput();
 static void SoundBufferHandler(void * infoHdl, AudioQueueRef inQ, AudioQueueBufferRef inBuffer);
 void handleCoreAudioErrorCode(OSStatus theErr);
 void mixer(void * outBuf, float * inBuf, UInt32 numBytes, UInt32 * bytesWritten);
-UInt32 CalculateLPCMFlags2 (
-                                   UInt32 inValidBitsPerChannel,
-                                   UInt32 inTotalBitsPerChannel,
-                                   bool inIsFloat,
-                                   bool inIsBigEndian,
-                                   bool inIsNonInterleaved
-                                   );
+
 
 static const int kNumberBuffers = 3;
 static UInt32 gIsRunning = 0;
@@ -48,7 +42,7 @@ typedef struct SoundIO_Info SoundIO_Info;
 // static struct SoundIO_Info * gInfo;
 
 // Useful defines - is this good style?
-#define     IO_BUFFER_LEN   512
+#define     IO_BUFFER_LEN   1024
 #define     NUM_CHANS       1
 
 #endif

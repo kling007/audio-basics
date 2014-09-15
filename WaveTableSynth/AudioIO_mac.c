@@ -11,21 +11,7 @@
 #include "AudioIO_mac.h"
 //#include <CoreAudio/CoreAudioTypes.h>
 
-
-UInt32 CalculateLPCMFlags2 (
-                                  UInt32 inValidBitsPerChannel,
-                                  UInt32 inTotalBitsPerChannel,
-                                  bool inIsFloat,
-                                  bool inIsBigEndian,
-                                  bool inIsNonInterleaved
-                                  ) {
-    return
-    (inIsFloat ? kAudioFormatFlagIsFloat : kAudioFormatFlagIsSignedInteger) |
-    (inIsBigEndian ? ((UInt32)kAudioFormatFlagIsBigEndian) : 0)             |
-    ((!inIsFloat && (inValidBitsPerChannel == inTotalBitsPerChannel)) ?
-     kAudioFormatFlagIsPacked : kAudioFormatFlagIsAlignedHigh)           |
-    (inIsNonInterleaved ? ((UInt32)kAudioFormatFlagIsNonInterleaved) : 0);
-}
+// the base callback for AudioQueues
 
 static void SoundBufferHandler(void * infoHdl, AudioQueueRef inQ, AudioQueueBufferRef inBuffer)
 {
@@ -71,25 +57,17 @@ int initAudioOutput(float * outputBuf)
     OSStatus err = 0;
     Float32 gain = 0.5;
     AudioStreamBasicDescription tempAudioDataFormat = {0};
-    
-    // Init the mDataFormat per Apple's suggestion
-    // (hmmmm... what's going on here? Do we need to alloc a local version or can we manip directly?)
-    // lInfo.mDataFormat = {0};
-    
-    // need to create a custom AudioStreamBasicDescription (ASBD) to populate the lInfo->mDataFormat
-    // may need to convert samples to UInt16 for iOS
-    
+
+    // Custom AudioStreamBasicDescription (ASBD) to populate the lInfo->mDataFormat
     
     tempAudioDataFormat.mSampleRate = 44100;
     tempAudioDataFormat.mFormatID = kAudioFormatLinearPCM;
     tempAudioDataFormat.mFormatFlags = kAudioFormatFlagIsPacked | kAudioFormatFlagIsFloat;
-    //tempAudioDataFormat.mFormatFlags = kAudioFormatFlagIsPacked | kAudioFormatFlagIsFloat | kAudioFormatFlagIsBigEndian;
-    //tempAudioDataFormat.mFormatFlags = kAudioFormatFlagsCanonical;
     tempAudioDataFormat.mBytesPerPacket = 4;
     tempAudioDataFormat.mFramesPerPacket = 1;
-    tempAudioDataFormat.mBytesPerFrame = 4; // NUM_CHANS * sizeof(float);
-    tempAudioDataFormat.mChannelsPerFrame = 1; //NUM_CHANS;
-    tempAudioDataFormat.mBitsPerChannel = 32; //8 * sizeof(float);
+    tempAudioDataFormat.mBytesPerFrame = NUM_CHANS * sizeof(float);
+    tempAudioDataFormat.mChannelsPerFrame = NUM_CHANS;
+    tempAudioDataFormat.mBitsPerChannel = 8 * sizeof(float);
     tempAudioDataFormat.mReserved = 0;
     
     lInfo.mDataFormat = tempAudioDataFormat;
@@ -147,7 +125,7 @@ int initAudioOutput(float * outputBuf)
         return 1;
     }
     
-    do {                                               // 5
+    do {
         CFRunLoopRunInMode (kCFRunLoopDefaultMode, 0.01, false);
     } while(lInfo.mIsRunning);
     

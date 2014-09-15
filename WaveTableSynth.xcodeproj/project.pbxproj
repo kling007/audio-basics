@@ -31,6 +31,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2A24A64C19C635A0001B697B /* SC2_UgenList */ = {isa = PBXFileReference; lastKnownFileType = text; path = SC2_UgenList; sourceTree = "<group>"; };
 		2A27122E19B2E5F6005F76FB /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = ../CoreAudio.framework; sourceTree = "<group>"; };
 		2A3C2ABE19A1BE4000673D12 /* WaveTableSynth */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = WaveTableSynth; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A3C2AC119A1BE4000673D12 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
@@ -72,6 +73,7 @@
 		2A3C2AB519A1BE4000673D12 = {
 			isa = PBXGroup;
 			children = (
+				2A24A64C19C635A0001B697B /* SC2_UgenList */,
 				2A3C2AD619A32C1A00673D12 /* ThingsToDo.txt */,
 				2A3C2AC019A1BE4000673D12 /* WaveTableSynth */,
 				2A27122D19B2DD17005F76FB /* ExternalIncludes */,
